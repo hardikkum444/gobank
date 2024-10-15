@@ -1,6 +1,10 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 type APIServer struct {
 	listenAddr string
@@ -10,6 +14,13 @@ func NewAPIServer(listenAddr string) *APIServer {
 	return &APIServer{
 		listenAddr: listenAddr,
 	}
+}
+
+func (s *APIServer) Run() {
+	router := mux.NewRouter()
+
+	router.HandleFunc("/account", s.handleAccount)
+
 }
 
 func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error {

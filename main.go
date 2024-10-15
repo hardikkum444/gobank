@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
-
-func main(){
-	fmt.Printf("Hello my guy")
+func main() {
+	server := NewAPIServer(":8000")
+	server.Run()
 }

@@ -10,6 +10,17 @@ type APIServer struct {
 	listenAddr string
 }
 
+type apiFunc func(http.ResponseWriter, *http.Request) error
+
+func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		err := f(w, r)
+		if err != nil {
+			// handle the error here
+		}
+	}
+}
+
 func NewAPIServer(listenAddr string) *APIServer {
 	return &APIServer{
 		listenAddr: listenAddr,

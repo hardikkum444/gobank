@@ -1,4 +1,4 @@
-module github.com/hardikkum444/gobank
+module github.com/hardikkum444/go-backend-api
 
 go 1.23.3
 
